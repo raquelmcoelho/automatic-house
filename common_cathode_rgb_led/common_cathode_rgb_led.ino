@@ -11,27 +11,51 @@ void setup() {
   digitalWrite(vermelho, LOW);
 }
 void loop() {
-  digitalWrite(verde, HIGH);
-  digitalWrite(azul, HIGH);
-  digitalWrite(vermelho, HIGH);
-  delay(1000);
-  digitalWrite(verde, LOW);
-  digitalWrite(azul, LOW);
-  digitalWrite(vermelho, LOW);
-  delay(1000);
-  
-  digitalWrite(vermelho, HIGH);
-  delay(1000);
-  digitalWrite(vermelho, LOW);
-  delay(1000);
+  white();
+  red();
+  green();
+  blue();
+  cyan();
+  purple();
+  yellow();
+}
 
-  digitalWrite(verde, HIGH);
-  delay(1000);
-  digitalWrite(verde, LOW);
-  delay(1000);
+void white() {
+  blink(1, 1, 1);
+}
 
-  digitalWrite(azul, HIGH);
+void red() {
+  blink(1, 0, 0);
+}
+
+void green() {
+  blink(0, 1, 0);
+}
+
+
+void blue() {
+  blink(0, 0, 1);
+}
+
+void purple() {
+  blink(1, 0, 1);
+}
+
+void yellow() {
+  blink(1, 1, 0);
+}
+
+void cyan() {
+  blink(0, 1, 1);
+}
+
+void blink(bool red, bool green, bool blue) {
+  if (red) digitalWrite(vermelho, HIGH);
+  if (green) digitalWrite(verde, HIGH);
+  if (blue) digitalWrite(azul, HIGH);
   delay(1000);
-  digitalWrite(azul, LOW);
+  if (red) digitalWrite(vermelho, LOW);
+  if (green) digitalWrite(verde, LOW);
+  if (blue) digitalWrite(azul, LOW);
   delay(1000);
 }
