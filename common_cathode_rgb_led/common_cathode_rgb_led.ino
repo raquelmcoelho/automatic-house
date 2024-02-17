@@ -1,6 +1,17 @@
 int azul = 10;
 int verde = 9;
 int vermelho = 8;
+const int interval = 1000;
+
+#define red 1
+#define green 2
+#define blue 4
+#define purple red | blue
+#define yellow red | green
+#define cyan green | blue
+#define white red | green | blue
+
+
 void setup() {
   pinMode(azul, OUTPUT);
   pinMode(verde, OUTPUT);
@@ -11,51 +22,22 @@ void setup() {
   digitalWrite(vermelho, LOW);
 }
 void loop() {
-  white();
-  red();
-  green();
-  blue();
-  cyan();
-  purple();
-  yellow();
+  blink(red);
+  blink(green);
+  blink(blue);
+  blink(purple);
+  blink(yellow);
+  blink(cyan);
+  blink(white);
 }
 
-void white() {
-  blink(1, 1, 1);
-}
-
-void red() {
-  blink(1, 0, 0);
-}
-
-void green() {
-  blink(0, 1, 0);
-}
-
-
-void blue() {
-  blink(0, 0, 1);
-}
-
-void purple() {
-  blink(1, 0, 1);
-}
-
-void yellow() {
-  blink(1, 1, 0);
-}
-
-void cyan() {
-  blink(0, 1, 1);
-}
-
-void blink(bool red, bool green, bool blue) {
-  if (red) digitalWrite(vermelho, HIGH);
-  if (green) digitalWrite(verde, HIGH);
-  if (blue) digitalWrite(azul, HIGH);
-  delay(1000);
-  if (red) digitalWrite(vermelho, LOW);
-  if (green) digitalWrite(verde, LOW);
-  if (blue) digitalWrite(azul, LOW);
-  delay(1000);
+void blink(int mask) {
+  if (mask & red) digitalWrite(vermelho, HIGH);
+  if (mask & green) digitalWrite(verde, HIGH);
+  if (mask & blue) digitalWrite(azul, HIGH);
+  delay(interval);
+  if (mask & red) digitalWrite(vermelho, LOW);
+  if (mask & green) digitalWrite(verde, LOW);
+  if (mask & blue) digitalWrite(azul, LOW);
+  delay(interval);
 }
